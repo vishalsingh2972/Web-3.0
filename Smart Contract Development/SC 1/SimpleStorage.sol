@@ -12,7 +12,7 @@ contract SimpleStorage {
     address myAddress = 0x4D5FcefFce56B5D79a2870450342a4cD391C8828;
     bytes32 favoriteBytes32 = "meow meow";
 
-    uint256 myFavoriteNumber = 70; //storage variable
+   uint256 myFavoriteNumber = 70; //storage variable ~ any variable that you create outside of a function inside the contract, will automatically be identified as a storage variable ~ hence here 'uint256 myFavoriteNumber = 70;' is identified as a storage variable
 
     //function responsible for updating our favorite number
     function store(uint256 _myFavoriteNumber) public{
@@ -45,17 +45,31 @@ contract SimpleStorage {
 
     // Person public Radha = Person({name:"Radha", favoriteNumber: 4});
 
-    //array of type 'Person'
+    //dynamic array of type 'Person'
     //this type of array is known as dynamic array as size of elements can increase/decrease
     Person[] public listOfPeople;
 
     //static array as array size is fixed, here max. size is upto '3' elements
     Person[3] public listOfPeople2;
 
+    //mapping associates a string (the name) with a uint256 (the favorite number). Essentially, it creates a key-value pair, where each name (the key) is mapped to a corresponding favorite number (the value).
+    mapping(string => uint256) public nameToFavoriteNumber;
+
+    //calldata, memory, storage
+    //calldata and memory keyword ~ in simple words the memory keyword or calldata keyword in Solidity indicates that the variable _name should be stored in memory(temporay) rather than blockchain storage(permanent) i.e The memory keyword in Solidity specifies that the variable should be stored in temporary memory, which is cleared after the function execution and we don't store it permanently on the blockchain
+    //calldata and memory keyword ~ only given for struct, array and mapping type variables //strings are also 'array of bytes'
     function addPerson(uint256 _favoriteNumber, string memory _name) public{
+        // _name = "chomu"; //possible ~ memory variable can be modified/manipulated
+        listOfPeople.push(Person(_favoriteNumber, _name));
+        nameToFavoriteNumber[_name] = _favoriteNumber;
+    }
+
+    function addPerson2(uint256 _favoriteNumber, string calldata _name) public{
+        // _name = "chomu"; //NOT possible ~ calldata variable cannot be modified/manipulated
         listOfPeople.push(Person(_favoriteNumber, _name));
     }
 
-    //memory keyword ~ in simple words the memory keyword in Solidity indicates that the variable _name should be stored in memory(temporay) rather than blockchain storage(permanent) i.e The memory keyword in Solidity specifies that the variable should be stored in temporary memory, which is cleared after the function execution and we don't store it permanently on the blockchain
-    //calldata, memory, storage
+    //calldata ~ temporary variable that can't be modified
+    //memory ~ temporary variable that can be modified
+    //storage ~ permanent variable that can be modified
 }
