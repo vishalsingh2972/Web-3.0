@@ -52,7 +52,7 @@ contract SimpleStorage {
     //static array as array size is fixed, here max. size is upto '3' elements
     Person[3] public listOfPeople2;
 
-    //mapping associates a string (the name) with a uint256 (the favorite number). Essentially, it creates a key-value pair, where each name (the key) is mapped to a corresponding favorite number (the value).
+    //mapping associates a string (the name) with a uint256 (the favorite number). Essentially, it creates a key-value pair, where each name (the key) is mapped to a corresponding favorite number (the value)
     mapping(string => uint256) public nameToFavoriteNumber;
 
     //calldata, memory, storage
@@ -61,7 +61,7 @@ contract SimpleStorage {
     function addPerson(uint256 _favoriteNumber, string memory _name) public{
         // _name = "chomu"; //possible ~ memory variable can be modified/manipulated
         listOfPeople.push(Person(_favoriteNumber, _name));
-        nameToFavoriteNumber[_name] = _favoriteNumber;
+        nameToFavoriteNumber[_name] = _favoriteNumber; //storing a key-value pair in the mapping //Here, _name is the key, and _favoriteNumber is the value
     }
 
     function addPerson2(uint256 _favoriteNumber, string calldata _name) public{
@@ -73,3 +73,17 @@ contract SimpleStorage {
     //memory ~ temporary variable that can be modified
     //storage ~ permanent variable that can be modified
 }
+
+
+/*
+How mapping works when you enter a 'string' value to find its corresponding favorite number?
+A:
+mapping(string => uint256) public nameToFavoriteNumber; is the basic definition that tells the EVM and Solidity to create a key-value store.
+nameToFavoriteNumber[_name] = _favoriteNumber; stores the value and name as a key-value pair when the value is stored for the first time using addPerson.
+And when you try to retrieve the favorite number for "Lata", it directly goes to the storage (not memory, since it's a persistent storage) and checks if there is a number associated with the string "Lata". If found, it returns the number back to you.
+
+Here's a summary:
+Definition: mapping(string => uint256) public nameToFavoriteNumber; (only once)
+Storing a value: nameToFavoriteNumber[_name] = _favoriteNumber; (when adding a new person using addPerson)
+Retrieving a value: Directly checks the storage for the key ("Lata") and returns the associated value if found. and if name (the key) typed is not found it returns a default value of 0 back
+*/
