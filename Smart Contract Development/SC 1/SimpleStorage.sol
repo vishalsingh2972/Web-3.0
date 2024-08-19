@@ -87,3 +87,5 @@ Definition: mapping(string => uint256) public nameToFavoriteNumber; (only once)
 Storing a value: nameToFavoriteNumber[_name] = _favoriteNumber; (when adding a new person using addPerson)
 Retrieving a value: Directly checks the storage for the key ("Lata") and returns the associated value if found. and if name (the key) typed is not found it returns a default value of 0 back
 */
+
+//First Contract created : 0x5326907E82B2e4507062E2D9Ad89ea11da65b3f7
