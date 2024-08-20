@@ -1,4 +1,5 @@
 // SPDX-License-Identifier: MIT (not mandatory but recommended)
+// zksync, polygon, arbitrum, optimism - EVM compatible L2 blockchains - Any blockchain that is EVM compatible allows you to deploy smart contracts written in Solidity  
 
 pragma solidity ^0.8.18; //stating our current version with caret '^'
 // pragma solidity >=0.8.18 <0.9.0; //stating version within range
