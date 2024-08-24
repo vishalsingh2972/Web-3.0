@@ -1,4 +1,6 @@
 # Web 3.0
+- [x] Deployed smart contract to Sepolia L1
+- [x] Deployed smart contract to zkSync Sepolia Testnet L2
 
 ## Official Docs
 
