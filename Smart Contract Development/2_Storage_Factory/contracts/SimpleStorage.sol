@@ -10,14 +10,8 @@ contract SimpleStorage {
         myFavoriteNumber = _myFavoriteNumber;
     }
 
-    //function similar to the getter function of ' uint256 public myFavoriteNumber = 70; '
     function retrieve() public view returns (uint256) {
         return myFavoriteNumber;
-    }
-
-    //pure function ~ this function is not modifying the state of the variable hence uses less gas ~ thats's why blue color buttons in Deployed Contracts indicating that the function doesn't modify the contract's state.
-    function retrieve2() public pure returns (uint256) {
-        return 150;
     }
 
     struct Person {
@@ -25,6 +19,7 @@ contract SimpleStorage {
         string name;
     }
 
+    // uint256[] public anArray;
     //dynamic array of type 'Person'
     Person[] public listOfPeople;
 
