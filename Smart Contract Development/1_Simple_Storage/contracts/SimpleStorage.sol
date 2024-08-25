@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT (not mandatory but recommended)
-// zksync, polygon, arbitrum, optimism - EVM compatible L2 blockchains(or L2 protocols or  L2 scaling solutions for Ethereum) - Any blockchain that is EVM compatible allows you to deploy smart contracts written in Solidity  
+// zksync, polygon, arbitrum, optimism - EVM compatible L2 blockchains(or L2 protocols or  L2 scaling solutions for Ethereum) - Any blockchain that is EVM compatible allows you to deploy smart contracts written in Solidity
 
 pragma solidity ^0.8.18; //stating our current version with caret '^'
 // pragma solidity >=0.8.18 <0.9.0; //stating version within range
@@ -13,10 +13,10 @@ contract SimpleStorage {
     address myAddress = 0x4D5FcefFce56B5D79a2870450342a4cD391C8828;
     bytes32 favoriteBytes32 = "meow meow";
 
-   uint256 myFavoriteNumber = 70; //storage variable ~ any variable that you create outside of a function inside the contract, will automatically be identified as a storage variable ~ hence here 'uint256 myFavoriteNumber = 70;' is identified as a storage variable
+    uint256 myFavoriteNumber = 70; //storage variable ~ any variable that you create outside of a function inside the contract, will automatically be identified as a storage variable ~ hence here 'uint256 myFavoriteNumber = 70;' is identified as a storage variable
 
     //function responsible for updating our favorite number
-    function store(uint256 _myFavoriteNumber) public{
+    function store(uint256 _myFavoriteNumber) public {
         myFavoriteNumber = _myFavoriteNumber;
     }
 
@@ -32,7 +32,8 @@ contract SimpleStorage {
     }
 
     // uint256[] listOfFavoriteNumbers;
-    struct Person{//create own types in solidity using 'struct' keyword
+    struct Person {
+        //create own types in solidity using 'struct' keyword
         uint256 favoriteNumber;
         string name;
     }
@@ -57,15 +58,15 @@ contract SimpleStorage {
     mapping(string => uint256) public nameToFavoriteNumber;
 
     //calldata, memory, storage
-    //calldata and memory keyword ~ in simple words the memory keyword or calldata keyword in Solidity indicates that the variable _name should be stored in memory(temporay) rather than blockchain storage(permanent) i.e The memory keyword in Solidity specifies that the variable should be stored in temporary memory, which is cleared after the function execution and we don't store it permanently on the blockchain
+    //calldata and memory keyword ~ in simple words the memory keyword or calldata keyword in Solidity indicates that the variable _name should be stored in memory(temporary) rather than blockchain storage(permanent) i.e The memory keyword in Solidity specifies that the variable should be stored in temporary memory, which is cleared after the function execution and we don't store it permanently on the blockchain
     //calldata and memory keyword ~ only given for struct, array and mapping type variables //strings are also 'array of bytes'
-    function addPerson(uint256 _favoriteNumber, string memory _name) public{
+    function addPerson(uint256 _favoriteNumber, string memory _name) public {
         // _name = "chomu"; //possible ~ memory variable can be modified/manipulated
         listOfPeople.push(Person(_favoriteNumber, _name));
         nameToFavoriteNumber[_name] = _favoriteNumber; //storing a key-value pair in the mapping //Here, _name is the key, and _favoriteNumber is the value
     }
 
-    function addPerson2(uint256 _favoriteNumber, string calldata _name) public{
+    function addPerson2(uint256 _favoriteNumber, string calldata _name) public {
         // _name = "chomu"; //NOT possible ~ calldata variable cannot be modified/manipulated
         listOfPeople.push(Person(_favoriteNumber, _name));
     }
@@ -74,7 +75,6 @@ contract SimpleStorage {
     //memory ~ temporary variable that can be modified - will only exist for the duration of the function call
     //storage ~ permanent variable that can be modified - will stay in the contract forever
 }
-
 
 /*
 How mapping works when you enter a 'string' value to find its corresponding favorite number?
