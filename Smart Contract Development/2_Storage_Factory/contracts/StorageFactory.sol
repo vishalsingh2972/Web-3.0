@@ -9,9 +9,18 @@ pragma solidity ^0.8.18;
 import {SimpleStorage} from "./SimpleStorage.sol";
 
 contract StorageFactory {
-    SimpleStorage public simpleStorage;
+    // SimpleStorage public simpleStorage;
+    SimpleStorage[] public listOfSimpleStorageContracts; //array that stores the instances of SimpleStorage.sol that we create below
 
     function createSimpleStorageContract() public {
-        simpleStorage = new SimpleStorage();
-    }   
+        // simpleStorage = new SimpleStorage();
+        
+        SimpleStorage newSimpleStorageContract = new SimpleStorage();
+        listOfSimpleStorageContracts.push(newSimpleStorageContract);
+    }
+
+    //function to interact with the 'store' function of the SimpleStorage.sol contract ~ so here our StorageFactory.sol contract is calling the 'store' function present in the SimpleStorage.sol contract
+    function sfStore(uint256 _simpleStorageIndex, uint256 _newSimpleStorageNumber) public{
+        //so in order to interact with the contract we will be needing 2 things - address and ABI(Application Binary Interface)
+    }
 }

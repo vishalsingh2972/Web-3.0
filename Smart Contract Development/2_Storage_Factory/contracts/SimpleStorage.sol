@@ -42,3 +42,9 @@ contract SimpleStorage {
     //memory ~ temporary variable that can be modified - will only exist for the duration of the function call
     //storage ~ permanent variable that can be modified - will stay in the contract forever
 }
+
+contract SimpleStorage2 {}
+
+contract SimpleStorage3 {}
+
+contract SimpleStorage4 {}
