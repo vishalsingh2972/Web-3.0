@@ -16,18 +16,31 @@ contract StorageFactory {
 
     function createSimpleStorageContract() public {
         // simpleStorage = new SimpleStorage();
-        
+
         //Create instances using imported contract SimpleStorage.sol
         SimpleStorage newSimpleStorageContract = new SimpleStorage();
         listOfSimpleStorageContracts.push(newSimpleStorageContract);
     }
 
-    //function to interact with the 'store' function of the SimpleStorage.sol contract ~ so here our StorageFactory.sol contract is calling the 'store' function present in the SimpleStorage.sol contract
-    function sfStore(uint256 _simpleStorageIndex, uint256 _newSimpleStorageNumber) public{
+    //function to interact(function to basically pass value to our 'store' function in SimpleStorage.sol contract) with the 'store' function of the SimpleStorage.sol contract ~ so here our StorageFactory.sol contract is calling the 'store' function present in the SimpleStorage.sol contract
+    function sfStore(
+        uint256 _simpleStorageIndex,
+        uint256 _newSimpleStorageNumber
+    ) public {
         //so in order to interact with the contract we will be needing 2 things - address and ABI(Application Binary Interface)
-        
+
         //Declare variables using imported contract SimpleStorage.sol
-        SimpleStorage mySimpleStorage = listOfSimpleStorageContracts[_simpleStorageIndex];
+        SimpleStorage mySimpleStorage = listOfSimpleStorageContracts[
+            _simpleStorageIndex
+        ];
         mySimpleStorage.store(_newSimpleStorageNumber);
+    }
+
+    //function to access/retrieve/view the value that we previously passed to our 'store' function in SimpleStorage.sol contract using the 'sfStore function'
+    //sfGet function you defined as a view function, which means it only reads data from the contract's state and doesn't modify anything.
+    function sfGet(uint256 _simpleStorageIndex) public view returns (uint256) {
+        
+        return listOfSimpleStorageContracts[_simpleStorageIndex].retrieve();
+        // return SimpleStorage(address(simpleStorageArray[_simpleStorageIndex])).retrieve();
     }
 }
