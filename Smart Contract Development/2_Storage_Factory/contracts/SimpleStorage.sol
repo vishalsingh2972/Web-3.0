@@ -6,7 +6,7 @@ contract SimpleStorage {
     uint256 myFavoriteNumber = 70;
 
     //function responsible for updating our favorite number
-    function store(uint256 _myFavoriteNumber) public {
+    function store(uint256 _myFavoriteNumber) public virtual {
         myFavoriteNumber = _myFavoriteNumber;
     }
 

@@ -27,19 +27,20 @@ contract StorageFactory {
         uint256 _simpleStorageIndex,
         uint256 _newSimpleStorageNumber
     ) public {
-        //so in order to interact with the contract we will be needing 2 things - address and ABI(Application Binary Interface)
+        //so in order to interact with the SimpleStorage.sol contract from the StorageFactory.sol contract we will be needing 2 things - address and ABI(Application Binary Interface)
 
         //Declare variables using imported contract SimpleStorage.sol
         SimpleStorage mySimpleStorage = listOfSimpleStorageContracts[
             _simpleStorageIndex
         ];
         mySimpleStorage.store(_newSimpleStorageNumber);
+
+        //or just directly listOfSimpleStorageContracts[_simpleStorageIndex].store(_newSimpleStorageNumber); also works
     }
 
     //function to access/retrieve/view the value that we previously passed to our 'store' function in SimpleStorage.sol contract using the 'sfStore function'
     //sfGet function you defined as a view function, which means it only reads data from the contract's state and doesn't modify anything.
     function sfGet(uint256 _simpleStorageIndex) public view returns (uint256) {
-        
         return listOfSimpleStorageContracts[_simpleStorageIndex].retrieve();
         // return SimpleStorage(address(simpleStorageArray[_simpleStorageIndex])).retrieve();
     }
