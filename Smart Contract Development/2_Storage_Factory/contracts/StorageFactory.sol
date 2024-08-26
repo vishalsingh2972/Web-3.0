@@ -7,14 +7,17 @@ pragma solidity ^0.8.18;
 
 // import {SimpleStorage, SimpleStorage2} from "./SimpleStorage.sol";
 import {SimpleStorage} from "./SimpleStorage.sol";
+// When you import a contract like SimpleStorage, you can use it as a type to: Declare arrays, Create instances, Declare variables etc.
 
 contract StorageFactory {
     // SimpleStorage public simpleStorage;
+    //Declare arrays using imported contract SimpleStorage.sol
     SimpleStorage[] public listOfSimpleStorageContracts; //array that stores the instances of SimpleStorage.sol that we create below
 
     function createSimpleStorageContract() public {
         // simpleStorage = new SimpleStorage();
         
+        //Create instances using imported contract SimpleStorage.sol
         SimpleStorage newSimpleStorageContract = new SimpleStorage();
         listOfSimpleStorageContracts.push(newSimpleStorageContract);
     }
@@ -22,5 +25,9 @@ contract StorageFactory {
     //function to interact with the 'store' function of the SimpleStorage.sol contract ~ so here our StorageFactory.sol contract is calling the 'store' function present in the SimpleStorage.sol contract
     function sfStore(uint256 _simpleStorageIndex, uint256 _newSimpleStorageNumber) public{
         //so in order to interact with the contract we will be needing 2 things - address and ABI(Application Binary Interface)
+        
+        //Declare variables using imported contract SimpleStorage.sol
+        SimpleStorage mySimpleStorage = listOfSimpleStorageContracts[_simpleStorageIndex];
+        mySimpleStorage.store(_newSimpleStorageNumber);
     }
 }
