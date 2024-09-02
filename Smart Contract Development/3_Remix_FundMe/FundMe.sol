@@ -1,12 +1,14 @@
 // Get funds from users into this contract
 // Withdraw funds to the owner of the contract or whoever has created this fundme contract
 // Set a minimum funding value in USD (~ min. $5)
+// till 5:33:00
 
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.18;
 
 contract FundMe {
+    
     uint256 public myValue = 1;
 
     //function they call to send money to our contract
@@ -38,7 +40,7 @@ contract FundMe {
 /*
 - Just like wallets can hold funds, contracts (like FundMe.sol) can actually hold funds as well. So whenever you deploy a contract similiar to a wallet address it actually works same as a wallet address i.e we you can send money to it, you can interact with it etc.
 
-- Revert gas loss ~ Let's break it down:
+- Revert transactions gas loss ~ Let's break it down:
     You send 0.5 ETH to the contract, along with some gas (let's say 20,000 gas units) to execute the transaction.
     The transaction starts executing, and some gas is consumed (let's say 5,000 gas units) before reaching the require statement.
     The require statement checks the condition (msg.value > 1e18), which fails because 0.5 ETH is less than 1 ETH.
